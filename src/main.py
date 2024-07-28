@@ -1,9 +1,10 @@
-from textual import on
+import threading
+from log_server import start_server, LOG_FILE
+from log_file_handler import monitor_file
 from textual.app import App, ComposeResult
-from textual.containers import Horizontal, Vertical, Container
-from textual.widgets import Header, Footer, Button, Label, Log, Input, Static
-from textual_plotext import PlotextPlot, themes
-from components.charts.plot import ChartPlot
+from textual.containers import Horizontal, Vertical
+from textual.widgets import Header, Footer, Log, Input, Static
+from textual_plotext import PlotextPlot
 
 TEXT = """2024-07-23 15:30:45,152 - INFO - Servidor HTTP iniciado na porta 8000
 2024-07-23 15:30:55,891 - INFO - Recebida requisição para processar o item com ID: 123
@@ -21,13 +22,15 @@ class Main(App):
     CSS_PATH = "style.css"
 
     def compose(self) -> ComposeResult:
+        yield Header()
+        yield Footer()
         with Horizontal():
             with Vertical(classes="column"):
                 yield PlotextPlot(classes="bar")
                 yield PlotextPlot(classes="plot")
             # with Vertical(classes="column"):
             with Vertical(classes="column"):
-                yield Input()
+                yield Input(classes=".search")
                 yield Log()
                 yield Static("Six", classes="box")
 
@@ -37,7 +40,7 @@ class Main(App):
     def on_mount(self):
         plt1 = self.query_one('.plot', PlotextPlot).plt
         y = plt1.sin()  # sinusoidal test signal
-        plt1.scatter(y, marker = "braille")
+        plt1.scatter(y, marker="braille")
 
         plt = self.query_one('.bar', PlotextPlot).plt
         pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
@@ -49,12 +52,23 @@ class Main(App):
         plt.show()
         plt.title("cw-message-service")
 
+    def on_input_submitted(self, event: Input.Submitted):
+        label = self.query_one('.search', Input)
+        label.update(f'[b red]Texto no Input {event.input.value}[/]')
+
     def on_ready(self) -> None:
+        threading.Thread(target=self.write_log, daemon=True).start()
+
+    def write_log(self):
         log = self.query_one(Log)
-        for _ in range(10):
-            log.write_line(TEXT)
+        line_log = monitor_file(LOG_FILE)
+        for line in line_log:
+            log.write_line(line)
 
 
 if __name__ == "__main__":
     app = Main()
-    app.run()
+    server_thread = threading.Thread(target=start_server, daemon=True)
+    server_thread.start()
+    app_thread = threading.Thread(target=app.run(), daemon=True)
+    app_thread.start()

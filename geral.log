@@ -1,3 +1,0 @@
-2024-07-24 19:23:47.027 | INFO     | __main__:<module>:15 - 2024-07-24 19:23:47.019 | INFO     | src.main.logs.log_handler:<module>:10 - Starting cw-message-service
-2024-07-24 19:23:50.257 | INFO     | __main__:<module>:15 - 2024-07-24 19:23:50.257 | INFO     | src.data.use_cases.actions.leave:user_leave:15 - {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}
-2024-07-24 19:24:56.869 | INFO     | __main__:<module>:16 - 2024-07-24 19:24:56.868 | INFO     | src.data.use_cases.actions.join:user_join:18 - {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}

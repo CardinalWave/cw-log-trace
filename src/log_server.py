@@ -2,13 +2,13 @@ import socketserver
 import pickle
 import struct
 
-from loguru import logger
 
+LOG_FILE = "log_service.txt"
 
 class LoggingStreamHandler(socketserver.StreamRequestHandler):
-
     def handle(self):
         while True:
+            log_file = open(LOG_FILE, "a")
             chunk = self.connection.recv(4)
             if len(chunk) < 4:
                 break
@@ -17,9 +17,13 @@ class LoggingStreamHandler(socketserver.StreamRequestHandler):
             while len(chunk) < slen:
                 chunk = chunk + self.connection.recv(slen - len(chunk))
             record = pickle.loads(chunk)
-            level, message = record["level"].name, record["message"]
             print(record)
-            logger.patch(lambda record: record.update(record)).log(level, message)
+            try:
+                log_file.write(f"{record['message']}\n")
+            except Exception:
+                log_file.write("Failed to write mesage")
 
-server = socketserver.TCPServer(('localhost', 9999), LoggingStreamHandler)
-server.serve_forever()
+def start_server(host='localhost', port=9999):
+    server = socketserver.TCPServer((host, port), LoggingStreamHandler)
+    print(f"Servidor de log iniciado em {host}:{port}")
+    server.serve_forever()

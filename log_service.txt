@@ -1,0 +1,22 @@
+{'service': 'cw-message-service:ip_service:0000', 'error': AttributeError("'NoneType' object has no attribute 'session_id'"), 'message': 'Error to find session'}
+{'action': 'join', 'service': 'cw-message-service:ip_service:0000', 'payload': {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Duplicate register'), 'message': 'Error to register session'}
+{'service': 'cw-message-service:ip_service:0000', 'error': InternalServerError('Internal server error'), 'message': 'Usuario ja logado'}
+{'action': 'leave', 'service': 'cw-message-service:ip_service:0000', 'payload': {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}}
+{'action': 'join', 'service': 'cw-message-service:ip_service:0000', 'payload': {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}}
+{'action': 'send', 'service': 'cw-message-service:ip_service:0000', 'payload': {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}}
+{'action': 'send', 'service': 'cw-message-service:ip_service:0000', 'payload': {'session_id': '5259d7df-c0f7-4729-879f-17d1f91c6100', 'device': 'esp8266_01', 'username': 'Lua', 'group_id': 'a1a9f26c-514f-41f0-9df0-2c8eff8fd456'}}
