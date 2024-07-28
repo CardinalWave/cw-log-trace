@@ -1,6 +1,7 @@
 import threading
 from log_server import start_server, LOG_FILE
-from log_file_handler import monitor_file
+from concurrent.futures import ThreadPoolExecutor
+from log_file_handler import filter_file, count_status
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Header, Footer, Log, Input, Static
@@ -21,16 +22,19 @@ class Main(App):
 
     CSS_PATH = "style.css"
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.executor = ThreadPoolExecutor(max_workers=2)
+
     def compose(self) -> ComposeResult:
-        yield Header()
+        yield Header(show_clock=True)
         yield Footer()
         with Horizontal():
             with Vertical(classes="column"):
                 yield PlotextPlot(classes="bar")
                 yield PlotextPlot(classes="plot")
-            # with Vertical(classes="column"):
             with Vertical(classes="column"):
-                yield Input(classes=".search")
+                yield Input(classes="search")
                 yield Log()
                 yield Static("Six", classes="box")
 
@@ -38,9 +42,9 @@ class Main(App):
         self.dark = not self.dark
 
     def on_mount(self):
-        plt1 = self.query_one('.plot', PlotextPlot).plt
-        y = plt1.sin()  # sinusoidal test signal
-        plt1.scatter(y, marker="braille")
+        plt = self.query_one('.plot', PlotextPlot).plt
+        y = plt.sin()
+        plt.scatter(y, marker="braille")
 
         plt = self.query_one('.bar', PlotextPlot).plt
         pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
@@ -53,15 +57,16 @@ class Main(App):
         plt.title("cw-message-service")
 
     def on_input_submitted(self, event: Input.Submitted):
-        label = self.query_one('.search', Input)
-        label.update(f'[b red]Texto no Input {event.input.value}[/]')
+        threading.Thread(target=self.update_log, daemon=True).start()
 
     def on_ready(self) -> None:
-        threading.Thread(target=self.write_log, daemon=True).start()
+        threading.Thread(target=self.update_log, daemon=True).start()
 
-    def write_log(self):
+    def update_log(self):
         log = self.query_one(Log)
-        line_log = monitor_file(LOG_FILE)
+        log.clear()
+        param = self.query_one(Input).value
+        line_log = filter_file(LOG_FILE, param)
         for line in line_log:
             log.write_line(line)
 
