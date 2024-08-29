@@ -3,7 +3,7 @@ Screen {
 }
 
 .column {
-    width: 50%;
+    width: 100%;
 }
 
 .box {
@@ -22,7 +22,7 @@ Input {
 }
 
 Log {
-    height: 40%;
+    height: 90%;
     margin: 0 5;
 }
 .plot {

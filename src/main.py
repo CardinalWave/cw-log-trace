@@ -30,9 +30,9 @@ class Main(App):
         yield Header(show_clock=True)
         yield Footer()
         with Horizontal():
-            with Vertical(classes="column"):
-                yield PlotextPlot(classes="bar")
-                yield PlotextPlot(classes="plot")
+            # with Vertical(classes="column"):
+            #     yield PlotextPlot(classes="bar")
+            #     yield PlotextPlot(classes="plot")
             with Vertical(classes="column"):
                 yield Input(classes="search")
                 yield Log()
@@ -41,20 +41,20 @@ class Main(App):
     def action_toggle_dark(self) -> None:
         self.dark = not self.dark
 
-    def on_mount(self):
-        plt = self.query_one('.plot', PlotextPlot).plt
-        y = plt.sin()
-        plt.scatter(y, marker="braille")
-
-        plt = self.query_one('.bar', PlotextPlot).plt
-        pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
-        male_percentages = [14, 36, 11, 8, 7, 4]
-        female_percentages = [12, 20, 35, 15, 2, 1]
-
-        plt.multiple_bar(pizzas, [male_percentages, female_percentages])
-        plt.title("Most Favored Pizzas in the World by Gender")
-        plt.show()
-        plt.title("cw-message-service")
+    # def on_mount(self):
+    #     plt = self.query_one('.plot', PlotextPlot).plt
+    #     y = plt.sin()
+    #     plt.scatter(y, marker="braille")
+    #
+    #     plt = self.query_one('.bar', PlotextPlot).plt
+    #     pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
+    #     male_percentages = [14, 36, 11, 8, 7, 4]
+    #     female_percentages = [12, 20, 35, 15, 2, 1]
+    #
+    #     plt.multiple_bar(pizzas, [male_percentages, female_percentages])
+    #     plt.title("Most Favored Pizzas in the World by Gender")
+    #     plt.show()
+    #     plt.title("cw-message-service")
 
     def on_input_submitted(self, event: Input.Submitted):
         threading.Thread(target=self.update_log, daemon=True).start()
