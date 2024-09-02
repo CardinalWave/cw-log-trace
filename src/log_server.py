@@ -1,11 +1,14 @@
 import socketserver
 import pickle
 import struct
+from config.config import Config
 
 LOG_FILE = "log_service.txt"
 
+
 class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     pass
+
 
 class LoggingStreamHandler(socketserver.StreamRequestHandler):
     def handle(self):
@@ -25,7 +28,8 @@ class LoggingStreamHandler(socketserver.StreamRequestHandler):
             except Exception:
                 log_file.write("Failed to write mesage")
 
-def start_server(host='localhost', port=9999):
+
+def start_server(host=Config.CW_LOG_TRACE_IP, port=int(Config.CW_LOG_TRACE_PORT)):
     server = ThreadedTCPServer((host, port), LoggingStreamHandler)
     print(f"Servidor de log iniciado em {host}:{port}")
     server.serve_forever()
