@@ -7,15 +7,6 @@ from textual.containers import Horizontal, Vertical
 from textual.widgets import Header, Footer, Log, Input, Static
 from textual_plotext import PlotextPlot
 
-TEXT = """2024-07-23 15:30:45,152 - INFO - Servidor HTTP iniciado na porta 8000
-2024-07-23 15:30:55,891 - INFO - Recebida requisição para processar o item com ID: 123
-2024-07-23 15:31:02,406 - INFO - Recebida requisição para processar o item com ID: 456
-2024-07-23 15:31:12,802 - WARNING - Requisição recebida sem parâmetro 'id'
-2024-07-23 15:31:12,802 - ERROR - Falha ao processar requisição: KeyError - 'id' não encontrado
-2024-07-23 15:32:00,000 - INFO - Encerrando servidor HTTP
-2024-07-23 15:32:00,001 - INFO - Servidor HTTP parado
-"""
-
 
 class Main(App):
     BINDINGS = [('d', 'toggle_dark', 'Toggle dark mode')]
@@ -72,8 +63,8 @@ class Main(App):
 
 
 if __name__ == "__main__":
-    app = Main()
-    server_thread = threading.Thread(target=start_server, daemon=True)
+    #app = Main()
+    server_thread = threading.Thread(target=start_server(), daemon=True)
     server_thread.start()
-    app_thread = threading.Thread(target=app.run(), daemon=True)
-    app_thread.start()
+    #app_thread = threading.Thread(target=app.run(), daemon=True)
+    #app_thread.start()
