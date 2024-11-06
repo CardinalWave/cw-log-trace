@@ -12,4 +12,4 @@ ENV CW_LOG_TRACE=http://0.0.0.0:5050
 ENV CW_LOG_TRACE_IP=0.0.0.0
 ENV CW_LOG_TRACE_PORT=5050
 
-CMD [ "python", "./src/main.py"  ]
+CMD [ "python", "./src/server.py"  ]
