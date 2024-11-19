@@ -9,7 +9,6 @@ LOG_FILE = "log_service.txt"
 class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     pass
 
-
 class LoggingStreamHandler(socketserver.StreamRequestHandler):
     def handle(self):
         while True:
@@ -22,7 +21,6 @@ class LoggingStreamHandler(socketserver.StreamRequestHandler):
             while len(chunk) < slen:
                 chunk = chunk + self.connection.recv(slen - len(chunk))
             record = pickle.loads(chunk)
-            print(record)
             try:
                 log_file.write(f"{record['message']}\n")
             except Exception:
