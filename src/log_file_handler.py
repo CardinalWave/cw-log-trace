@@ -1,5 +1,6 @@
-import time
+#pylint: disable=unspecified-encoding)
 
+import time
 
 def read_file(filename):
     with open(filename, 'r') as file:

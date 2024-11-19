@@ -10,3 +10,4 @@ textual==0.71.0
 textual-plotext==0.2.1
 typing_extensions==4.12.2
 uc-micro-py==1.0.3
+pylint

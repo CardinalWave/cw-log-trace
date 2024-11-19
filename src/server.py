@@ -1,5 +1,6 @@
+#pylint: disable=wrong-import-order, import-error
 import threading
-from log_server import start_server, LOG_FILE
+from log_server import start_server
 from concurrent.futures import ThreadPoolExecutor
 
 class Server:
