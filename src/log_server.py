@@ -1,7 +1,9 @@
+#pylint: disable=consider-using-with, unspecified-encoding, import-error
+
 import socketserver
 import pickle
 import struct
-from config.config import Config
+from config.ports import Config
 
 LOG_FILE = "log_service.txt"
 
